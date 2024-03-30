@@ -14,7 +14,9 @@ unsigned long int prev_last_fast_beam;
 unsigned long int prev_last_mid_beam;
 unsigned long int prev_last_slow_beam;
 unsigned long int prev_last_plane_beam;
+unsigned long int prev_buzzer;
 
+#define buzzer_pin 14
 #define headlights_button_pin 13
 #define left_signal_button_pin 11
 #define right_signal_button_pin 12
@@ -27,10 +29,11 @@ unsigned long int prev_last_plane_beam;
 #define right_signal_led_pin 4
 #define headlight_led_pin 5
 
-
-unsigned long int fast_beam_interval = 50;
+unsigned long int buzzer_mode_interval = 10;
+unsigned long int fast_beam_interval = 200;
 unsigned long int mid_beam_interval = 100;
 unsigned long int slow_beam_interval = 400;
-unsigned long int plane_beam_interval = 1000;
+unsigned long int plane_beam_interval = 700;
+
 
 

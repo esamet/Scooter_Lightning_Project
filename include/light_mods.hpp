@@ -6,7 +6,6 @@ digitalWrite(brake_light_pin,LOW);
 digitalWrite(stop_led_pin,LOW);
 digitalWrite(left_signal_led_pin,LOW);
 digitalWrite(right_signal_led_pin,LOW);
-
 }
 
 void brake_function(){
@@ -23,24 +22,22 @@ void left_signal_function(){
   digitalWrite(front_bottom_led_pin,HIGH);
   digitalWrite(left_signal_led_pin,slow_beam);
   digitalWrite(right_signal_led_pin,LOW);
-}
-
-void left_signal_clear_function(){
-  digitalWrite(front_bottom_led_pin,LOW);
-  digitalWrite(left_signal_led_pin,LOW);
-  digitalWrite(right_signal_led_pin,LOW);
-}
+  digitalWrite(buzzer_pin,plane_beam);
+  }
 
 void right_signal_function(){
   digitalWrite(front_bottom_led_pin,HIGH);
   digitalWrite(left_signal_led_pin,LOW);
   digitalWrite(right_signal_led_pin,slow_beam);
+  digitalWrite(buzzer_pin,plane_beam);
+
 }
 
-void right_signal_clear_function(){
+void signal_clear_function(){
   digitalWrite(front_bottom_led_pin,LOW);
   digitalWrite(left_signal_led_pin,LOW);
   digitalWrite(right_signal_led_pin,LOW);
+  digitalWrite(buzzer_pin,LOW);
 }
 
 void classic(){
@@ -91,9 +88,17 @@ void nighty_bottom(){
 void highway(){
   digitalWrite(headlight_led_pin,HIGH);
   digitalWrite(front_bottom_led_pin,HIGH);
-  if(digitalRead(brake_pedal_pin)) digitalWrite(stop_led_pin,HIGH);
+  digitalWrite(stop_led_pin,HIGH);
   digitalWrite(left_signal_led_pin,slow_beam);
   digitalWrite(right_signal_led_pin,slow_beam);
-  if(digitalRead(brake_pedal_pin)) digitalWrite(brake_light_pin,plane_beam);
+  digitalWrite(brake_light_pin,slow_beam);
 }
 
+void beep(){
+  prev_buzzer = current_time;
+  while(current_time - prev_buzzer < buzzer_mode_interval){
+    digitalWrite(buzzer_pin, HIGH);  
+    current_time = millis();
+  }
+  digitalWrite(buzzer_pin, LOW); //Buzzer off
+}

@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <config.h>
 #include <header_file.hpp>
-#include <light_mods.hpp>
 
 // put function declarations here:
 
@@ -65,10 +64,10 @@ void loop() {
   if(prev_brake_pedal>digitalRead(brake_pedal_pin)) brake_clear_function();
 
   if(!digitalRead(left_signal_button_pin)) left_signal_function();
-  if(prev_left_signal_button>!digitalRead(left_signal_button_pin)) left_signal_clear_function();
+  if(prev_left_signal_button>!digitalRead(left_signal_button_pin)) signal_clear_function();
   
   if(!digitalRead(right_signal_button_pin)) right_signal_function();
-  if(prev_right_signal_button>!digitalRead(right_signal_button_pin)) right_signal_clear_function();
+  if(prev_right_signal_button>!digitalRead(right_signal_button_pin)) signal_clear_function();
 
   if(current_time-prev_last_fast_beam>fast_beam_interval){
     (fast_beam) ? fast_beam=LOW : fast_beam=HIGH;
@@ -99,13 +98,13 @@ void loop() {
 
   delay(50);
   //Serial.printf("headlight: %d, brake: %d, left signal: %d, right signal: %d \n", !digitalRead(headlights_button_pin),!digitalRead(brake_pedal_pin),!digitalRead(left_signal_button_pin),!digitalRead(right_signal_button_pin));
-  Serial.print(!digitalRead(headlights_button_pin));
-  Serial.print(", ");
-  Serial.print(digitalRead(brake_pedal_pin));
-  Serial.print(", ");
-  Serial.print(!digitalRead(left_signal_button_pin));
-  Serial.print(", ");
-  Serial.println(!digitalRead(right_signal_button_pin));
+  // Serial.print(!digitalRead(headlights_button_pin));
+  // Serial.print(", ");
+  // Serial.print(digitalRead(brake_pedal_pin));
+  // Serial.print(", ");
+  // Serial.print(!digitalRead(left_signal_button_pin));
+  // Serial.print(", ");
+  // Serial.println(!digitalRead(right_signal_button_pin));
 
 }
  
